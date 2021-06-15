@@ -14,7 +14,7 @@ export default function board() {
  const [turn, setTurn] = useState('Red');
  
  let colorChange = function(loc){
-   //tells if a piece has already been clicked
+   //Ensures a user cant click a clicked piece
    if(game[loc] === "white"){
      //tells if a piece is below where user clicks
      if(game[loc + 7] !== 'white'){
@@ -29,6 +29,11 @@ export default function board() {
       }
       game[loc] = turn
       //Add win condtions below this line
+      //Checks below of where the user clicks to see if they won
+      if(game[loc] === game[loc + 7] && game[loc + 7] === game[loc + 14] && game[loc + 14] === game[loc + 21]){
+        alert(turn + " wins!")
+      }
+      
     }
    }
  }
