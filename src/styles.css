@@ -26,3 +26,13 @@ body {
   border-radius: 60px;
   margin: 5px;
 }
+.white {
+  background-color: white;
+}
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}
