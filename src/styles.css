@@ -20,7 +20,6 @@ body {
 }
 
 .tile {
-  background-color: white;
   width: 70px;
   height: 70px;
   border-radius: 60px;
@@ -29,10 +28,20 @@ body {
 .white {
   background-color: white;
 }
-.yellow {
+.Yellow {
   background-color: yellow;
 }
 
-.red {
+.Red {
   background-color: red;
+}
+#Red {
+  color: rgb(150, 0, 0);
+}
+#Yellow {
+  color: rgb(201, 201, 18);
+}
+body {
+  display: flex;
+  justify-content: center;
 }
