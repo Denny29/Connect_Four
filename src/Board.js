@@ -16,17 +16,20 @@ export default function board() {
  let colorChange = function(loc){
    //tells if a piece has already been clicked
    if(game[loc] === "white"){
-     i++;
-     if(i % 2 === 0){
-       //changes color to red
-       setTurn("red");
-     }
-     else{
-       //changes color to yellow
-       setTurn("yellow")
-     }
-     game[loc] = turn
-     console.log(game[0])
+     //tells if a piece is below where user clicks
+     if(game[loc + 7] !== 'white'){
+      i++;
+      if(i % 2 === 0){
+        //changes color to red
+        setTurn("red");
+      }
+      else{
+        //changes color to yellow
+        setTurn("yellow")
+      }
+      game[loc] = turn
+      console.log(game[0])
+    }
    }
  }
  
