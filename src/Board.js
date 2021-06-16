@@ -11,41 +11,51 @@ let game = ["white", "white", "white", "white", "white", "white", "white"
 let i = 0;
  
 export default function board() {
+  //State used to switch between red and yellow pieces
  const [turn, setTurn] = useState('Red');
- 
+ //State used to end game
+ const [gameOver, setGameOver] = useState(false);
+
  let colorChange = function(loc){
-   //Ensures a user cant click a clicked piece
-   if(game[loc] === "white"){
-     //tells if a piece is below where user clicks
-     if(game[loc + 7] !== 'white'){
-      i++;
-      if(i % 2 === 0){
-        //changes color to red
-        setTurn("Red");
-      }
-      else{
-        //changes color to yellow
-        setTurn("Yellow")
-      }
-      game[loc] = turn
-      //Add win condtions below this line
-      //Checks below of where the user clicks to see if they won. AKA Vertical win condtion
-      if(game[loc] === game[loc + 7] && game[loc + 7] === game[loc + 14] && game[loc + 14] === game[loc + 21]){
-        alert(turn + " wins!")
-      }
-      //Horizontal win condtion(s) below
-      else if(horizontal(loc)){
-        alert(turn + " wins!")
-      }
-      //Diagonal win condition(s) below
-      else if(diagonal1(loc)){
-        alert(turn + " wins!")
-      }
-      else if(diagonal2(loc)){
-        alert(turn + " wins!")
+   //Stops user from clicking after game is over
+   if(gameOver === false){
+    //Ensures a user cant click a clicked piece
+    if(game[loc] === "white"){
+      //tells if a piece is below where user clicks
+      if(game[loc + 7] !== 'white'){
+        i++;
+        if(i % 2 === 0){
+          //changes color to red
+          setTurn("Red");
+        }
+        else{
+          //changes color to yellow
+          setTurn("Yellow");
+        }
+        game[loc] = turn
+        //Add win condtions below this line
+        //Checks below of where the user clicks to see if they won. AKA Vertical win condtion
+        if(game[loc] === game[loc + 7] && game[loc + 7] === game[loc + 14] && game[loc + 14] === game[loc + 21]){
+          alert(turn + " wins!");
+          setGameOver(true);
+        }
+        //Horizontal win condtion(s) below
+        else if(horizontal(loc)){
+          alert(turn + " wins!");
+          setGameOver(true);
+        }
+        //Diagonal win condition(s) below
+        else if(diagonal1(loc)){
+          alert(turn + " wins!")
+          setGameOver(true)
+        }
+        else if(diagonal2(loc)){
+          alert(turn + " wins!");
+          setGameOver(true);
+        }
       }
     }
-   }
+  }
  }
 
  let horizontal = function(index){
@@ -73,7 +83,7 @@ export default function board() {
  }
  
  let diagonal1 = function(index){
-  //Goes through all diagonal possibilties to the right
+  //Goes through all diagonal possibilties from left to right
   for(index = 0; index < 4; index++){
     if(game[index] === game[index + 8] && game[index + 8] === game[index + 16] && game[index + 16] === game[index + 24] && game[index] !== 'white'){
       return true;
@@ -89,7 +99,7 @@ export default function board() {
  
  
  let diagonal2 = function(index){
-   //Goes through all diagonal possibilties to the left
+   //Goes through all diagonal possibilties from right to left
   for(index = 3; index < 7; index++){
     if(game[index] === game[index + 6] && game[index + 6] === game[index + 12] && game[index + 12] === game[index + 18] && game[index] !== 'white'){
       return true;
@@ -102,7 +112,19 @@ export default function board() {
     }
     }
   }
- //tile to be called 42 times
+ 
+  let restart = function(){
+    setGameOver(false)
+    setTurn('Red')
+    i = 0;
+    game = ["white", "white", "white", "white", "white", "white", "white"
+ ,"white", "white", "white", "white", "white", "white", "white"
+ ,"white", "white", "white", "white", "white", "white", "white"
+ ,"white", "white", "white", "white", "white", "white", "white"
+ ,"white", "white", "white", "white", "white", "white", "white"
+ ,"white", "white", "white", "white", "white", "white", "white"];
+  }
+  //tile to be called 42 times
  return (
    <div>
     <div id="board">
@@ -162,6 +184,7 @@ export default function board() {
       </div>
     </div>
     <h1 id={turn}>{turn}'s turn</h1>
+    <h1 onClick={() => restart()}>Click here to restart the game.</h1>
   </div>
  );
 }
