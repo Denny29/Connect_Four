@@ -29,13 +29,39 @@ export default function board() {
       }
       game[loc] = turn
       //Add win condtions below this line
-      //Checks below of where the user clicks to see if they won
+      //Checks below of where the user clicks to see if they won. AKA Vertical win condtion
       if(game[loc] === game[loc + 7] && game[loc + 7] === game[loc + 14] && game[loc + 14] === game[loc + 21]){
         alert(turn + " wins!")
       }
-      
+      //Horizontal win condtion(s) below
+      else if(horizontal(loc)){
+        alert(turn + " wins!")
+      }
     }
    }
+ }
+
+ let horizontal = function(index){
+    for(index = 0; index < 4; index++){
+      if(game[index] === game[index + 1] && game[index + 1] === game[index + 2] && game[index + 2] === game[index + 3] && game[index] !== 'white'){
+        return true;
+      }
+      else if(game[index + 7] === game[index + 8] && game[index + 8] === game[index + 9] && game[index + 9] === game[index + 10] && game[index + 7] !== 'white'){
+        return true;
+      }
+      else if(game[index + 14] === game[index + 15] && game[index + 15] === game[index + 16] && game[index + 16] === game[index + 17] && game[index + 14] !== 'white'){
+        return true;
+      }
+      else if(game[index + 21] === game[index + 22] && game[index + 22] === game[index + 23] && game[index + 23] === game[index + 24] && game[index + 21] !== 'white'){
+        return true;
+      }
+      else if(game[index + 28] === game[index + 29] && game[index + 29] === game[index + 30] && game[index + 30] === game[index + 31] && game[index + 28] !== 'white'){
+        return true;
+      }
+      else if(game[index + 35] === game[index + 36] && game[index + 36] === game[index + 37] && game[index + 37] === game[index + 38] && game[index + 35] !== 'white'){
+        return true;
+      }
+    }
  }
  
  //tile to be called 42 times
