@@ -37,11 +37,19 @@ export default function board() {
       else if(horizontal(loc)){
         alert(turn + " wins!")
       }
+      //Diagonal win condition(s) below
+      else if(diagonal1(loc)){
+        alert(turn + " wins!")
+      }
+      else if(diagonal2(loc)){
+        alert(turn + " wins!")
+      }
     }
    }
  }
 
  let horizontal = function(index){
+   //Goes through all 6 rows to see if a horizontal win occured
     for(index = 0; index < 4; index++){
       if(game[index] === game[index + 1] && game[index + 1] === game[index + 2] && game[index + 2] === game[index + 3] && game[index] !== 'white'){
         return true;
@@ -64,6 +72,36 @@ export default function board() {
     }
  }
  
+ let diagonal1 = function(index){
+  //Goes through all diagonal possibilties to the right
+  for(index = 0; index < 4; index++){
+    if(game[index] === game[index + 8] && game[index + 8] === game[index + 16] && game[index + 16] === game[index + 24] && game[index] !== 'white'){
+      return true;
+    }
+    else if(game[index + 7] === game[index + 15] && game[index + 15] === game[index + 23] && game[index + 23] === game[index + 31] && game[index + 7] !== 'white'){
+      return true;
+    }
+    else if(game[index + 14] === game[index + 22] && game[index + 22] === game[index + 30] && game[index + 30] === game[index + 38] && game[index + 14] !== 'white'){
+      return true;
+    }
+    }
+  }
+ 
+ 
+ let diagonal2 = function(index){
+   //Goes through all diagonal possibilties to the left
+  for(index = 3; index < 7; index++){
+    if(game[index] === game[index + 6] && game[index + 6] === game[index + 12] && game[index + 12] === game[index + 18] && game[index] !== 'white'){
+      return true;
+    }
+    else if(game[index + 7] === game[index + 13] && game[index + 13] === game[index + 19] && game[index + 19] === game[index + 25] && game[index + 7] !== 'white'){
+      return true;
+    }
+    else if(game[index + 14] === game[index + 20] && game[index + 20] === game[index + 26] && game[index + 26] === game[index + 32] && game[index + 14] !== 'white'){
+      return true;
+    }
+    }
+  }
  //tile to be called 42 times
  return (
    <div>
