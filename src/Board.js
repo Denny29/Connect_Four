@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import Tile from "./Tile.js";
  
- 
+//data model of ongoing game
 let game = ["white", "white", "white", "white", "white", "white", "white"
  ,"white", "white", "white", "white", "white", "white", "white"
  ,"white", "white", "white", "white", "white", "white", "white"
  ,"white", "white", "white", "white", "white", "white", "white"
  ,"white", "white", "white", "white", "white", "white", "white"
  ,"white", "white", "white", "white", "white", "white", "white"];
+
+//Counter used to switch between red and yellow
 let i = 0;
  
 export default function board() {
@@ -114,6 +116,7 @@ export default function board() {
   }
  
   let restart = function(){
+    //resets all values to restart game
     setGameOver(false)
     setTurn('Red')
     i = 0;
@@ -124,6 +127,7 @@ export default function board() {
  ,"white", "white", "white", "white", "white", "white", "white"
  ,"white", "white", "white", "white", "white", "white", "white"];
   }
+  
   //tile to be called 42 times
  return (
    <div>
