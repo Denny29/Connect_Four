@@ -38,28 +38,30 @@ export default function board() {
         //Add win condtions below this line
         //Checks below of where the user clicks to see if they won. AKA Vertical win condtion
         if(game[loc] === game[loc + 7] && game[loc + 7] === game[loc + 14] && game[loc + 14] === game[loc + 21]){
-          alert(turn + " wins!");
+          setTimeout(alertFunc, 50);
           setGameOver(true);
         }
         //Horizontal win condtion(s) below
         else if(horizontal(loc)){
-          alert(turn + " wins!");
+          setTimeout(alertFunc, 50);
           setGameOver(true);
         }
         //Diagonal win condition(s) below
         else if(diagonal1(loc)){
-          alert(turn + " wins!")
+          setTimeout(alertFunc, 50);
           setGameOver(true)
         }
         else if(diagonal2(loc)){
-          alert(turn + " wins!");
+          setTimeout(alertFunc, 50);
           setGameOver(true);
         }
       }
     }
   }
  }
-
+ function alertFunc(){
+  alert(turn + " wins!")
+ }
  let horizontal = function(index){
    //Goes through all 6 rows to see if a horizontal win occured
     for(index = 0; index < 4; index++){
